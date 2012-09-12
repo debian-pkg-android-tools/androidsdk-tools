@@ -1,0 +1,22 @@
+The source code has been excepted from the git repository
+ https://android.googlesource.com/platform/sdk
+
+where the following files and directories have been deleted:
+ - all directories except:
+    - androidprefs
+    - common
+    - sdkmanager/libs/sdklib
+ - common/tests
+ - sdkmanager/libs/sdklib/tests
+ - all directories/ files in sdkmanager/libs/sdklib/src/com/android/sdklib/ except
+    - build
+    - internal/build
+    - util
+    - SdkConstants.java
+    - ISdkLog.java
+   (we don't want to update the sdk through the android package system)
+ - sdkmanager/libs/sdklib/sdc/com/android/sdklib/internal/build/MakeIdentity.java
+   (this file contains a reference to a file for which I cannot find the sources)
+ - all directories starting with '.' (except '.' itself)
+
+The script 'get_source.script' can be used to generate the source archive.

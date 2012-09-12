@@ -1,0 +1,29 @@
+Source: androidsdk-tools
+Section: devel
+Priority: extra
+Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
+Uploaders: Stefan Handschuh <handschuh.stefan@googlemail.com>
+Build-Depends: debhelper (>=9), default-jdk, cdbs
+Standards-Version: 3.9.3
+Homepage: http://developer.android.com/tools/help/index.html
+
+Package: libandroidsdk-common-java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}
+Description: Android sdk tools common library
+ Common library used by other android sdk tools.
+
+Package: libandroidsdk-androidprefs-java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}
+Description: Android preferences library
+ Library for android preferences.
+
+Package: libandroidsdk-sdklib-java
+Architecture: all
+Depends: ${misc:Depends}, libandroidsdk-common-java, libandroidsdk-androidprefs-java
+Description: Android sdklib
+ The android sdklib contains the resource assembler that compiles
+ the static resource files of an android project.
+ .
+ This version of the sdklib library lacks the support for the sdk manager.

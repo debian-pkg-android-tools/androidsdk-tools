@@ -1,0 +1,5 @@
+androidsdk-tools (20+git20120808~8c05950-1) unstable; urgency=low
+
+  * Initial release (Closes: #687057).
+
+ -- Stefan Handschuh <handschuh.stefan@googlemail.com>  Thu, 06 Sep 2012 21:44:53 +0200

@@ -1,0 +1,22 @@
+#!/usr/bin/make -f
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+
+build:
+	mkdir -p common/bin
+	javac -d common/bin $(shell find common/src -name *.java)
+	jar cf androidsdk-common.jar -C common/bin .
+	mkdir -p androidprefs/bin
+	javac -d androidprefs/bin $(shell find androidprefs/src -name *.java)
+	jar cf androidsdk-androidprefs.jar -C androidprefs/bin .
+	mkdir -p sdkmanager/libs/sdklib/bin
+	javac -cp androidsdk-common.jar:androidsdk-androidprefs.jar -d sdkmanager/libs/sdklib/bin $(shell find sdkmanager/libs/sdklib/src -name *.java)
+	jar cf androidsdk-sdklib.jar -C sdkmanager/libs/sdklib/bin .
+
+clean::
+	rm -fr common/bin
+	rm -fr androidprefs/bin
+	rm -fr sdkmanager/libs/sdklib/bin
+	rm -fr androidsdk-common.jar
+	rm -fr androidsdk-androidprefs.jar
+	rm -fr androidsdk-sdklib.jar
