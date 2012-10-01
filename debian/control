@@ -3,7 +3,7 @@ Section: devel
 Priority: extra
 Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
 Uploaders: Stefan Handschuh <handschuh.stefan@googlemail.com>
-Build-Depends: debhelper (>=9), default-jdk, cdbs
+Build-Depends: debhelper (>=9), default-jdk, cdbs, libswt-gtk-3-java, eclipse-rcp
 Standards-Version: 3.9.3
 Homepage: http://developer.android.com/tools/help/index.html
 Vcs-Git: git://anonscm.debian.org/git/pkg-java/androidsdk-tools.git
@@ -32,3 +32,13 @@ Description: Android sdklib
  the static resource files of an android project.
  .
  This version of the sdklib library lacks the support for the sdk manager.
+
+Package: libandroidsdk-sdkstats-java
+Section: java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-androidprefs-java
+Description: Sends Android SDK usage statistics to Google
+ This library sends reports about usage of Android SDK to Google server.
+ Information can be used to help improving the software.
+ .
+ User has to grant a permission in order to participate in the data collection.

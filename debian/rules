@@ -2,16 +2,27 @@
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 
+ECLIPSE_JFACE_JAR := $(shell find /usr/lib/eclipse/plugins/org.eclipse.jface_*.jar)
+ECLIPSE_COMMANDS_JAR := $(shell find /usr/lib/eclipse/plugins/org.eclipse.core.commands_*.jar)
+
+SDKSTATS_CLASSPATH := androidsdk-androidprefs.jar:/usr/share/java/swt.jar:$(ECLIPSE_JFACE_JAR):$(ECLIPSE_COMMANDS_JAR)
+
 build:
 	mkdir -p common/bin
 	javac -d common/bin $(shell find common/src -name *.java)
 	jar cf androidsdk-common.jar -C common/bin .
+
 	mkdir -p androidprefs/bin
 	javac -d androidprefs/bin $(shell find androidprefs/src -name *.java)
 	jar cf androidsdk-androidprefs.jar -C androidprefs/bin .
+
 	mkdir -p sdkmanager/libs/sdklib/bin
 	javac -cp androidsdk-common.jar:androidsdk-androidprefs.jar -d sdkmanager/libs/sdklib/bin $(shell find sdkmanager/libs/sdklib/src -name *.java)
 	jar cf androidsdk-sdklib.jar -C sdkmanager/libs/sdklib/bin .
+
+	mkdir -p sdkstats/bin
+	javac -cp $(SDKSTATS_CLASSPATH) -d sdkstats/bin $(shell find sdkstats/src -name *.java)
+	jar cf androidsdk-sdkstats.jar -C sdkstats/bin .
 
 clean::
 	rm -fr common/bin
@@ -20,3 +31,4 @@ clean::
 	rm -fr androidsdk-common.jar
 	rm -fr androidsdk-androidprefs.jar
 	rm -fr androidsdk-sdklib.jar
+	rm -fr androidsdk-sdkstats.jar
