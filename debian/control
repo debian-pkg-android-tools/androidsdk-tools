@@ -6,6 +6,8 @@ Uploaders: Stefan Handschuh <handschuh.stefan@googlemail.com>
 Build-Depends: debhelper (>=9), default-jdk, cdbs
 Standards-Version: 3.9.3
 Homepage: http://developer.android.com/tools/help/index.html
+Vcs-Git: git://anonscm.debian.org/git/pkg-java/androidsdk-tools.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-java/androidsdk-tools.git
 
 Package: libandroidsdk-common-java
 Architecture: all

@@ -19,4 +19,5 @@ where the following files and directories have been deleted:
    (this file contains a reference to a file for which I cannot find the sources)
  - all directories starting with '.' (except '.' itself)
 
-The script 'get_source.script' can be used to generate the source archive.
+The script 'orig-tar.sh' can be used to generate the source archive.
+

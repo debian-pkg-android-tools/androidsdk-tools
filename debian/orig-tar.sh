@@ -5,7 +5,7 @@
 # with the specified revision.                        #
 #######################################################
 
-if [ -d androidsdk-tools -o -f androidsdk-tools ] 
+if [ -d androidsdk-tools -o -f androidsdk-tools ]
 then
     echo "The file/directory 'androidsdk-tools' exists .. aborting."
     exit
