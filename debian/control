@@ -3,7 +3,7 @@ Section: devel
 Priority: extra
 Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
 Uploaders: Stefan Handschuh <handschuh.stefan@googlemail.com>
-Build-Depends: debhelper (>=9), javahelper, default-jdk, cdbs, libswt-gtk-3-java,
+Build-Depends: debhelper (>=9), javahelper, default-jdk, cdbs, bnd, libswt-gtk-3-java,
  eclipse-rcp
 Standards-Version: 3.9.3
 Homepage: http://developer.android.com/tools/help/index.html

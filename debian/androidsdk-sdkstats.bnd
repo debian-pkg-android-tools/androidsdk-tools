@@ -1,0 +1,5 @@
+Bundle-Name: Android sdkstats library
+Bundle-SymbolicName: com.android.sdkstats
+Bundle-Version: 1.0.0
+Bundle-Vendor: Debian.org
+Import-Package: *

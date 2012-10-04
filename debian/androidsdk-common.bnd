@@ -1,0 +1,5 @@
+Bundle-Name: Android SDK tools common library
+Bundle-SymbolicName: com.android
+Bundle-Version: 1.0.0
+Bundle-Vendor: Debian.org
+Import-Package: *
