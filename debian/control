@@ -10,18 +10,21 @@ Vcs-Git: git://anonscm.debian.org/git/pkg-java/androidsdk-tools.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-java/androidsdk-tools.git
 
 Package: libandroidsdk-common-java
+Section: java
 Architecture: all
 Depends: ${java:Depends}, ${misc:Depends}
 Description: Android sdk tools common library
  Common library used by other android sdk tools.
 
 Package: libandroidsdk-androidprefs-java
+Section: java
 Architecture: all
 Depends: ${java:Depends}, ${misc:Depends}
 Description: Android preferences library
  Library for android preferences.
 
 Package: libandroidsdk-sdklib-java
+Section: java
 Architecture: all
 Depends: ${misc:Depends}, libandroidsdk-common-java, libandroidsdk-androidprefs-java
 Description: Android sdklib
