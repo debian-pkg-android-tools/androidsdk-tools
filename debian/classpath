@@ -1,0 +1,4 @@
+androidsdk-common.jar .
+androidsdk-androidprefs.jar .
+androidsdk-sdklib.jar /usr/share/java/androidsdk-common.jar /usr/share/java/androidsdk-androidprefs.jar
+androidsdk-sdkstats.jar /usr/share/java/androidsdk-androidprefs.jar /usr/share/java/swt.jar
