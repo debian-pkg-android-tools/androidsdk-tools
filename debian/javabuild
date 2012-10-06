@@ -3,3 +3,5 @@ androidsdk-androidprefs.jar androidprefs/src
 androidsdk-sdklib.jar sdkmanager/libs/sdklib/src
 androidsdk-sdkstats.jar sdkstats/src
 androidsdk-swtmenubar.jar swtmenubar/src
+androidsdk-ddmlib.jar ddms/libs/ddmlib/src
+androidsdk-ddmuilib.jar ddms/libs/ddmuilib/src

@@ -4,7 +4,7 @@ Priority: extra
 Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
 Uploaders: Stefan Handschuh <handschuh.stefan@googlemail.com>
 Build-Depends: debhelper (>=9), javahelper, default-jdk, cdbs, bnd, libswt-gtk-3-java,
- eclipse-rcp
+ libjfreechart-swt-java, eclipse-rcp
 Standards-Version: 3.9.3
 Homepage: http://developer.android.com/tools/help/index.html
 Vcs-Git: git://anonscm.debian.org/git/pkg-java/androidsdk-tools.git
@@ -54,3 +54,21 @@ Description: Android SDK OS menubar hook library
  .
  Typically, an SWT Menu named "Tools" should be provided into which the
  library will add About and Options menu items.
+
+Package: libandroidsdk-ddmlib-java
+Section: java
+Architecture: all
+Depends: android-tools-adb, ${java:Depends}, ${misc:Depends}
+Description: Library for communicaton with connected Android devices
+ Dalvik Debug Monitor Server provides a way to communicate via adb with
+ Android devices connected through USB or running in emulator.
+
+Package: libandroidsdk-ddmuilib-java
+Section: java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-ddmlib-java
+Description: User interface library for ddmlib
+ Dalvik Debug Monitor Server provides a way to communicate via adb with
+ Android devices connected through USB or running in emulator.
+ .
+ This library provies UI components for use with ddmlib.

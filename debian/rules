@@ -4,11 +4,14 @@ include /usr/share/cdbs/1/class/javahelper.mk
 
 ECLIPSE_JFACE_JAR := $(shell find /usr/lib/eclipse/plugins/org.eclipse.jface_*.jar)
 ECLIPSE_COMMANDS_JAR := $(shell find /usr/lib/eclipse/plugins/org.eclipse.core.commands_*.jar)
+ECLIPSE_EQUINOX_COMMON_JAR := $(shell find /usr/lib/eclipse/plugins/org.eclipse.equinox.common_*.jar)
 
-export CLASSPATH := androidsdk-common.jar:androidsdk-androidprefs.jar:/usr/share/java/swt.jar:$(ECLIPSE_JFACE_JAR):$(ECLIPSE_COMMANDS_JAR)
+export CLASSPATH := androidsdk-common.jar:androidsdk-androidprefs.jar:androidsdk-ddmlib.jar:/usr/share/java/swt.jar:/usr/share/java/jfreechart.jar:/usr/share/java/jfreechart-swt.jar:$(ECLIPSE_JFACE_JAR):$(ECLIPSE_COMMANDS_JAR):$(ECLIPSE_EQUINOX_COMMON_JAR)
 
 common-post-build-indep::
 	for BNDFILE in debian/*.bnd; do \
 		JARNAME=`basename $$BNDFILE .bnd`.jar; \
 		bnd wrap -properties $$BNDFILE -output $$JARNAME $$JARNAME; \
 	done
+
+	jar uf androidsdk-ddmuilib.jar -C ddms/libs/ddmuilib/src images

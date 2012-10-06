@@ -8,8 +8,11 @@ where the following files and directories have been deleted:
     - sdkmanager/libs/sdklib
     - sdkstats
     - swtmenubar
+    - ddms
  - common/tests
  - sdkmanager/libs/sdklib/tests
+ - ddms/libs/ddmlib/tests
+ - ddms/libs/ddmuilib/tests
  - all directories/ files in sdkmanager/libs/sdklib/src/com/android/sdklib/ except
     - build
     - internal/build

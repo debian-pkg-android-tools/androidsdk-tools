@@ -17,11 +17,12 @@ git clone -b tools_r$REVISION https://android.googlesource.com/platform/sdk andr
 VERSION=`git --git-dir=androidsdk-tools/.git log -1 --format=%cd~%h --date=short | sed s/-//g`
 echo "Version "$VERSION
 echo "Deleting not needed files ..."
-rm -fr `find androidsdk-tools -maxdepth 1 -type d ! -name androidsdk-tools ! -name androidprefs ! -name common ! -name sdkmanager ! -name sdkstats ! -name swtmenubar`
+rm -fr `find androidsdk-tools -maxdepth 1 -type d ! -name androidsdk-tools ! -name androidprefs ! -name common ! -name sdkmanager ! -name sdkstats ! -name swtmenubar ! -name ddms`
 rm -fr androidsdk-tools/common/tests
 rm -fr androidsdk-tools/sdkmanager/libs/sdklib/tests
 rm -fr androidsdk-tools/sdkmanager/app
 rm -fr androidsdk-tools/sdkmanager/libs/sdkuilib
+rm -fr androidsdk-tools/ddms/libs/ddmlib/tests androidsdk-tools/ddms/libs/ddmuilib/tests
 rm -fr `find androidsdk-tools/sdkmanager/libs/sdklib/src/com/android/sdklib -maxdepth 1 ! -name sdklib ! -name build ! -name util ! -name internal ! -name SdkConstants.java ! -name ISdkLog.java`
 rm -fr `find androidsdk-tools/sdkmanager/libs/sdklib/src/com/android/sdklib/internal -type d ! -name internal ! -name build`
 rm -fr androidsdk-tools/sdkmanager/libs/sdklib/src/com/android/sdklib/internal/build/MakeIdentity.java
