@@ -6,7 +6,7 @@ ECLIPSE_JFACE_JAR := $(shell find /usr/lib/eclipse/plugins/org.eclipse.jface_*.j
 ECLIPSE_COMMANDS_JAR := $(shell find /usr/lib/eclipse/plugins/org.eclipse.core.commands_*.jar)
 ECLIPSE_EQUINOX_COMMON_JAR := $(shell find /usr/lib/eclipse/plugins/org.eclipse.equinox.common_*.jar)
 
-export CLASSPATH := androidsdk-common.jar:androidsdk-androidprefs.jar:androidsdk-ddmlib.jar:/usr/share/java/swt.jar:/usr/share/java/jfreechart.jar:/usr/share/java/jfreechart-swt.jar:$(ECLIPSE_JFACE_JAR):$(ECLIPSE_COMMANDS_JAR):$(ECLIPSE_EQUINOX_COMMON_JAR)
+export CLASSPATH := androidsdk-common.jar:androidsdk-androidprefs.jar:androidsdk-ddmlib.jar:androidsdk-ddmuilib.jar:androidsdk-sdkstats.jar:androidsdk-swtmenubar.jar:/usr/share/java/swt.jar:/usr/share/java/jfreechart.jar:/usr/share/java/jfreechart-swt.jar:$(ECLIPSE_JFACE_JAR):$(ECLIPSE_COMMANDS_JAR):$(ECLIPSE_EQUINOX_COMMON_JAR)
 
 common-post-build-indep::
 	for BNDFILE in debian/*.bnd; do \
@@ -15,3 +15,10 @@ common-post-build-indep::
 	done
 
 	jar uf androidsdk-ddmuilib.jar -C ddms/libs/ddmuilib/src images
+
+	jar uf androidsdk-ddms.jar -C ddms/app/src images
+	jh_manifest -m com.android.ddms.Main androidsdk-ddms.jar
+
+install/androidsdk-ddms::
+	mkdir -p debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps
+	cp ddms/app/src/images/ddms-128.png debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps/ddms.png

@@ -5,3 +5,4 @@ androidsdk-sdkstats.jar sdkstats/src
 androidsdk-swtmenubar.jar swtmenubar/src
 androidsdk-ddmlib.jar ddms/libs/ddmlib/src
 androidsdk-ddmuilib.jar ddms/libs/ddmuilib/src
+androidsdk-ddms.jar ddms/app/src

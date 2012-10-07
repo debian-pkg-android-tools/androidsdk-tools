@@ -72,3 +72,22 @@ Description: User interface library for ddmlib
  Android devices connected through USB or running in emulator.
  .
  This library provies UI components for use with ddmlib.
+
+Package: androidsdk-ddms
+Section: java
+Architecture: all
+Depends: libandroidsdk-swtmenubar-java, libandroidsdk-ddmlib-java,
+ libandroidsdk-ddmuilib-java, ${java:Depends}, ${misc:Depends}
+Description: Graphical debugging tool for Android
+ Dalvik Debug Monitor is a tool for debugging Android applications. Among
+ others, it provides these capabilities:
+ .
+  * Port-forwarding services.
+  * Screen capture on the device.
+  * Thread and heap information on the device.
+  * Logcat, process, and radio state information.
+  * Incoming call and SMS spoofing.
+  * Location data spoofing.
+ .
+ This package is required only when you want to run DDMS as a standalone
+ application. For usage from within Eclipse IDE, install eclipse-adt.

@@ -5,3 +5,4 @@ androidsdk-sdkstats.jar androidsdk-androidprefs.jar swt.jar
 androidsdk-swtmenubar.jar swt.jar
 androidsdk-ddmlib.jar .
 androidsdk-ddmuilib.jar androidsdk-ddmlib.jar jfreechart.jar jfreechart-swt.jar
+androidsdk-ddms.jar androidsdk-ddmlib.jar androidsdk-ddmuilib.jar androidsdk-sdkstats.jar androidsdk-swtmenubar.jar  org.eclipse.jface.jar

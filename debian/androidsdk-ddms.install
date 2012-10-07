@@ -1,0 +1,3 @@
+androidsdk-ddms.jar usr/share/java
+ddms/app/etc/ddms usr/bin
+debian/ddms.desktop usr/share/applications

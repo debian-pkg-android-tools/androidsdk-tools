@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Dalvik Debug Monitor
+Icon=ddms
+Exec=ddms
+Terminal=false
+Categories=Development;Debugger;
