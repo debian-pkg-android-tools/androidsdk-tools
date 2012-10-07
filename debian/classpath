@@ -2,3 +2,4 @@ androidsdk-common.jar .
 androidsdk-androidprefs.jar .
 androidsdk-sdklib.jar androidsdk-common.jar androidsdk-androidprefs.jar
 androidsdk-sdkstats.jar androidsdk-androidprefs.jar swt.jar
+androidsdk-swtmenubar.jar swt.jar

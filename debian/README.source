@@ -7,6 +7,7 @@ where the following files and directories have been deleted:
     - common
     - sdkmanager/libs/sdklib
     - sdkstats
+    - swtmenubar
  - common/tests
  - sdkmanager/libs/sdklib/tests
  - all directories/ files in sdkmanager/libs/sdklib/src/com/android/sdklib/ except

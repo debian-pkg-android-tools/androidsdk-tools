@@ -43,3 +43,14 @@ Description: Sends Android SDK usage statistics to Google
  Information can be used to help improving the software.
  .
  User has to grant a permission in order to participate in the data collection.
+
+Package: libandroidsdk-swtmenubar-java
+Section: java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}
+Description: Android SDK OS menubar hook library
+ This project provides a platform-specific way to hook into the default
+ OS menu bar.
+ .
+ Typically, an SWT Menu named "Tools" should be provided into which the
+ library will add About and Options menu items.
