@@ -2,4 +2,4 @@ Bundle-Name: Android sdklib library
 Bundle-SymbolicName: com.android.sdklib
 Bundle-Version: 1.0.0
 Bundle-Vendor: Debian.org
-Import-Package: *
+Import-Package: sun.misc;resolution:=optional, sun.security.*;resolution:=optional, *
