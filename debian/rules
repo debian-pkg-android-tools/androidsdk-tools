@@ -2,7 +2,7 @@
 
 include /usr/share/cdbs/1/class/javahelper.mk
 
-export CLASSPATH := androidsdk-common.jar:androidsdk-ddmlib.jar:androidsdk-ddmuilib.jar:androidsdk-sdkstats.jar:androidsdk-swtmenubar.jar:/usr/share/java/swt.jar:/usr/share/java/jfreechart.jar:/usr/share/java/jfreechart-swt.jar:/usr/share/java/org.eclipse.jface.jar:/usr/share/java/org.eclipse.core.commands.jar:/usr/share/java/org.eclipse.equinox.common.jar
+export CLASSPATH := androidsdk-common.jar:androidsdk-ddmlib.jar:androidsdk-ddmuilib.jar:androidsdk-sdkstats.jar:androidsdk-swtmenubar.jar:/usr/share/java/swt.jar:/usr/share/java/jfreechart.jar:/usr/share/java/jfreechart-swt.jar:/usr/share/java/org.eclipse.jface.jar:/usr/share/java/org.eclipse.core.commands.jar:/usr/share/java/org.eclipse.equinox.common.jar:/usr/share/java/guava.jar
 
 common-post-build-indep::
 	for BNDFILE in debian/*.bnd; do \

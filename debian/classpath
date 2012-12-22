@@ -1,5 +1,5 @@
 androidsdk-common.jar .
-androidsdk-sdklib.jar androidsdk-common.jar
+androidsdk-sdklib.jar androidsdk-common.jar guava.jar
 androidsdk-sdkstats.jar androidsdk-common.jar swt.jar org.eclipse.jface.jar
 androidsdk-swtmenubar.jar swt.jar
 androidsdk-ddmlib.jar .
