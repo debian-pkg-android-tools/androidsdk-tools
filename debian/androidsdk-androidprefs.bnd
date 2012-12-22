@@ -1,5 +1,0 @@
-Bundle-Name: Android preferences library
-Bundle-SymbolicName: com.android.prefs
-Bundle-Version: 1.0.0
-Bundle-Vendor: Debian.org
-Import-Package: *

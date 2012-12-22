@@ -1,7 +1,6 @@
 androidsdk-common.jar .
-androidsdk-androidprefs.jar .
-androidsdk-sdklib.jar androidsdk-common.jar androidsdk-androidprefs.jar
-androidsdk-sdkstats.jar androidsdk-androidprefs.jar swt.jar org.eclipse.jface.jar
+androidsdk-sdklib.jar androidsdk-common.jar
+androidsdk-sdkstats.jar androidsdk-common.jar swt.jar org.eclipse.jface.jar
 androidsdk-swtmenubar.jar swt.jar
 androidsdk-ddmlib.jar .
 androidsdk-ddmuilib.jar androidsdk-ddmlib.jar jfreechart.jar jfreechart-swt.jar

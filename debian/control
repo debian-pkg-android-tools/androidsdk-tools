@@ -17,17 +17,10 @@ Depends: ${java:Depends}, ${misc:Depends}
 Description: Android sdk tools common library
  Common library used by other android sdk tools.
 
-Package: libandroidsdk-androidprefs-java
-Section: java
-Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}
-Description: Android preferences library
- Library for android preferences.
-
 Package: libandroidsdk-sdklib-java
 Section: java
 Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-common-java, libandroidsdk-androidprefs-java
+Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-common-java
 Description: Android sdklib
  The android sdklib contains the resource assembler that compiles
  the static resource files of an android project.
@@ -37,7 +30,7 @@ Description: Android sdklib
 Package: libandroidsdk-sdkstats-java
 Section: java
 Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-androidprefs-java
+Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-common-java
 Description: Sends Android SDK usage statistics to Google
  This library sends reports about usage of Android SDK to Google server.
  Information can be used to help improving the software.

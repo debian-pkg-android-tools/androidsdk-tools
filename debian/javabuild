@@ -1,5 +1,4 @@
 androidsdk-common.jar common/src
-androidsdk-androidprefs.jar androidprefs/src
 androidsdk-sdklib.jar sdkmanager/libs/sdklib/src
 androidsdk-sdkstats.jar sdkstats/src
 androidsdk-swtmenubar.jar swtmenubar/src
