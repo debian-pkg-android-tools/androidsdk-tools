@@ -85,3 +85,27 @@ Description: Graphical debugging tool for Android
  .
  This package is required only when you want to run DDMS as a standalone
  application. For usage from within Eclipse IDE, install eclipse-adt.
+
+Package: libandroidsdk-hierarchyviewerlib-java
+Section: java
+Architecture: all
+Depends: libandroidsdk-ddmuilib-java, ${java:Depends}, ${misc:Depends}
+Description: Android Hierarchy Viewer library
+ Hierarchy Viewer allows you to debug and optimize your user interface.
+ It provides a visual representation of the layout's View hierarchy
+ (the Layout View) and a magnified inspector of the display (the Pixel
+ Perfect View).
+
+Package: androidsdk-hierarchyviewer
+Section: java
+Architecture: all
+Depends: libandroidsdk-hierarchyviewerlib-java, libandroidsdk-common-java,
+ libandroidsdk-swtmenubar-java, ${java:Depends}, ${misc:Depends}
+Description: Tool to debug and optimize Android user interface
+ Hierarchy Viewer allows you to debug and optimize your user interface.
+ It provides a visual representation of the layout's View hierarchy
+ (the Layout View) and a magnified inspector of the display (the Pixel
+ Perfect View).
+ .
+ This package is required only when you want to run DDMS as a standalone
+ application. For usage from within Eclipse IDE, install eclipse-adt

@@ -1,0 +1,3 @@
+androidsdk-hierarchyviewer.jar usr/share/java
+hierarchyviewer2/app/etc/hierarchyviewer usr/bin
+debian/hierarchyviewer.desktop usr/share/applications

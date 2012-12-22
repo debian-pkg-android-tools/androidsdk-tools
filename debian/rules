@@ -2,7 +2,7 @@
 
 include /usr/share/cdbs/1/class/javahelper.mk
 
-export CLASSPATH := androidsdk-common.jar:androidsdk-ddmlib.jar:androidsdk-ddmuilib.jar:androidsdk-sdkstats.jar:androidsdk-swtmenubar.jar:/usr/share/java/swt.jar:/usr/share/java/jfreechart.jar:/usr/share/java/jfreechart-swt.jar:/usr/share/java/org.eclipse.jface.jar:/usr/share/java/org.eclipse.core.commands.jar:/usr/share/java/org.eclipse.equinox.common.jar:/usr/share/java/guava.jar
+export CLASSPATH := androidsdk-common.jar:androidsdk-ddmlib.jar:androidsdk-ddmuilib.jar:androidsdk-sdkstats.jar:androidsdk-swtmenubar.jar:androidsdk-hierarchyviewerlib.jar:/usr/share/java/swt.jar:/usr/share/java/jfreechart.jar:/usr/share/java/jfreechart-swt.jar:/usr/share/java/org.eclipse.jface.jar:/usr/share/java/org.eclipse.core.commands.jar:/usr/share/java/org.eclipse.equinox.common.jar:/usr/share/java/guava.jar
 
 common-post-build-indep::
 	for BNDFILE in debian/*.bnd; do \
@@ -15,6 +15,19 @@ common-post-build-indep::
 	jar uf androidsdk-ddms.jar -C ddms/app/src images
 	jh_manifest -m com.android.ddms.Main androidsdk-ddms.jar
 
+	jar uf androidsdk-hierarchyviewerlib.jar -C hierarchyviewer2/libs/hierarchyviewerlib/src images
+
+	jh_manifest -m com.android.hierarchyviewer.HierarchyViewerApplication androidsdk-hierarchyviewer.jar
+
 install/androidsdk-ddms::
 	mkdir -p debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps
 	cp ddms/app/src/images/ddms-128.png debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps/ddms.png
+
+	mkdir -p debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/128x128/apps
+	cp hierarchyviewer2/libs/hierarchyviewerlib/src/images/sdk-hierarchyviewer-128.png \
+		debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/128x128/apps/hierarchyviewer.png
+
+	mkdir -p debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/16x16/apps
+	cp hierarchyviewer2/libs/hierarchyviewerlib/src/images/sdk-hierarchyviewer-16.png \
+		debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/16x16/apps/hierarchyviewer.png
+	chmod 644 debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/16x16/apps/hierarchyviewer.png

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Android Hierarchy Viewer
+Icon=hierarchyviewer
+Exec=hierarchyviewer
+Terminal=false
+Categories=Development;Debugger;

@@ -1,0 +1,62 @@
+From 539a85ea22cdd91106b8a669bbc75e7e54c11cdb Mon Sep 17 00:00:00 2001
+From: Jakub Adam <jakub.adam@ktknet.cz>
+Date: Sat, 22 Dec 2012 23:10:49 +0100
+Subject: [PATCH] fix-hierarchyviewer-script-paths
+
+---
+ hierarchyviewer2/app/etc/hierarchyviewer |   27 ++-------------------------
+ 1 file changed, 2 insertions(+), 25 deletions(-)
+
+diff --git a/hierarchyviewer2/app/etc/hierarchyviewer b/hierarchyviewer2/app/etc/hierarchyviewer
+index 7ed10e0..da1ed29 100755
+--- a/hierarchyviewer2/app/etc/hierarchyviewer
++++ b/hierarchyviewer2/app/etc/hierarchyviewer
+@@ -35,7 +35,7 @@ prog="${progdir}"/`basename "${prog}"`
+ cd "${oldwd}"
+ 
+ jarfile=hierarchyviewer2.jar
+-frameworkdir="$progdir"
++frameworkdir="/usr/share/java"
+ libdir="$progdir"
+ if [ ! -r "$frameworkdir/$jarfile" ]
+ then
+@@ -78,29 +78,6 @@ fi
+ 
+ jarpath="$frameworkdir/$jarfile:$frameworkdir/swtmenubar.jar"
+ 
+-# Figure out the path to the swt.jar for the current architecture.
+-# if ANDROID_SWT is defined, then just use this.
+-# else, if running in the Android source tree, then look for the correct swt folder in prebuilt
+-# else, look for the correct swt folder in the SDK under tools/lib/
+-swtpath=""
+-if [ -n "$ANDROID_SWT" ]; then
+-    swtpath="$ANDROID_SWT"
+-else
+-    vmarch=`${javaCmd} -jar "${frameworkdir}"/archquery.jar`
+-    if [ -n "$ANDROID_BUILD_TOP" ]; then
+-        osname=`uname -s | tr A-Z a-z`
+-        swtpath="${ANDROID_BUILD_TOP}/prebuilts/tools/${osname}-${vmarch}/swt"
+-    else
+-        swtpath="${frameworkdir}/${vmarch}"
+-    fi
+-fi
+-
+-if [ ! -d "$swtpath" ]; then
+-    echo "SWT folder '${swtpath}' does not exist."
+-    echo "Please export ANDROID_SWT to point to the folder containing swt.jar for your platform."
+-    exit 1
+-fi
+-
+ # need to use "java.ext.dirs" because "-jar" causes classpath to be ignored
+ # might need more memory, e.g. -Xmx128M
+ echo "The standalone version of hieararchyviewer is deprecated."
+@@ -108,5 +85,5 @@ echo "Please use Android Device Monitor (tools/monitor) instead."
+ exec "$javaCmd" \
+     -Xmx512M $os_opts $java_debug \
+     -Dcom.android.hierarchyviewer.bindir="$progdir" \
+-    -classpath "$jarpath:$swtpath/swt.jar" \
++    -classpath "$jarpath" \
+     com.android.hierarchyviewer.HierarchyViewerApplication "$@"
+-- 
+1.7.10.4
+
