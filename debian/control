@@ -2,7 +2,8 @@ Source: androidsdk-tools
 Section: devel
 Priority: extra
 Maintainer: Debian Java Maintainers <pkg-java-maintainers@lists.alioth.debian.org>
-Uploaders: Stefan Handschuh <handschuh.stefan@googlemail.com>
+Uploaders: Stefan Handschuh <handschuh.stefan@googlemail.com>,
+ Jakub Adam <jakub.adam@ktknet.cz>
 Build-Depends: debhelper (>=9), javahelper, default-jdk, cdbs, bnd, libswt-gtk-3-java,
  libjfreechart-swt-java, eclipse-rcp (>= 3.8.1), libguava-java (>= 13.0.1)
 Standards-Version: 3.9.3
