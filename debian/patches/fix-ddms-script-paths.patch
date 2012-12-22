@@ -1,5 +1,5 @@
 From: Jakub Adam <jakub.adam@ktknet.cz>
-Date: Sun, 7 Oct 2012 21:24:16 +0200
+Date: Sat, 22 Dec 2012 21:46:13 +0100
 Subject: fix-ddms-script-paths
 
 ---
@@ -19,7 +19,7 @@ index d698ec3..8390aff 100755
  libdir="$progdir"
  if [ ! -r "$frameworkdir/$jarfile" ]
  then
-@@ -77,31 +77,8 @@ fi
+@@ -77,33 +77,10 @@ fi
  
  jarpath="$frameworkdir/$jarfile:$frameworkdir/swtmenubar.jar"
  
@@ -46,6 +46,8 @@ index d698ec3..8390aff 100755
 -    exit 1
 -fi
 -
+ echo "The standalone version of DDMS is deprecated."
+ echo "Please use Android Device Monitor (tools/monitor) instead."
  exec "$javaCmd" \
      -Xmx256M $os_opts $java_debug \
      -Dcom.android.ddms.bindir="$progdir" \
