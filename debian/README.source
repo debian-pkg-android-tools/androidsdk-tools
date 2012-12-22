@@ -8,6 +8,7 @@ where the following files and directories have been deleted:
     - sdkstats
     - swtmenubar
     - ddms
+    - hierarchyviewer2
  - common/tests
  - sdkmanager/libs/sdklib/tests
  - ddms/libs/ddmlib/tests
