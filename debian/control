@@ -109,3 +109,12 @@ Description: Tool to debug and optimize Android user interface
  .
  This package is required only when you want to run DDMS as a standalone
  application. For usage from within Eclipse IDE, install eclipse-adt
+
+Package: androidsdk-traceview
+Section: java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}
+Description: Tool to profile performance of Android applications
+ Traceview is a graphical viewer for execution logs saved by your application.
+ It can help you debug your application and profile its performance.
+

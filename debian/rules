@@ -19,6 +19,9 @@ common-post-build-indep::
 
 	jh_manifest -m com.android.hierarchyviewer.HierarchyViewerApplication androidsdk-hierarchyviewer.jar
 
+	jar uf androidsdk-traceview.jar -C traceview/src/resources icons
+	jh_manifest -m com.android.traceview.MainWindow androidsdk-traceview.jar
+
 install/androidsdk-ddms::
 	mkdir -p debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps
 	cp ddms/app/src/images/ddms-128.png debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps/ddms.png

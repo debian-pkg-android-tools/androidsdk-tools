@@ -1,2 +1,3 @@
 fix-ddms-script-paths.patch
 fix-hierarchyviewer-script-paths.patch
+fix-traceview-script-paths.patch
