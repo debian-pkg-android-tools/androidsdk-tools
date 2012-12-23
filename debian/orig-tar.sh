@@ -17,7 +17,7 @@ git clone -b tools_r$REVISION https://android.googlesource.com/platform/sdk andr
 VERSION=`git --git-dir=androidsdk-tools/.git log -1 --format=%cd~%h --date=short | sed s/-//g`
 echo "Version "$VERSION
 echo "Deleting not needed files ..."
-rm -fr `find androidsdk-tools -maxdepth 1 -type d ! -name androidsdk-tools ! -name common ! -name sdkmanager ! -name sdkstats ! -name swtmenubar ! -name ddms ! -name hierarchyviewer2`
+rm -fr `find androidsdk-tools -maxdepth 1 -type d ! -name androidsdk-tools ! -name common ! -name sdkmanager ! -name sdkstats ! -name swtmenubar ! -name ddms ! -name hierarchyviewer2 ! -name traceview`
 rm -fr androidsdk-tools/common/tests
 rm -fr androidsdk-tools/sdkmanager/libs/sdklib/tests
 rm -fr androidsdk-tools/sdkmanager/app

@@ -9,6 +9,7 @@ where the following files and directories have been deleted:
     - swtmenubar
     - ddms
     - hierarchyviewer2
+    - traceview
  - common/tests
  - sdkmanager/libs/sdklib/tests
  - ddms/libs/ddmlib/tests
