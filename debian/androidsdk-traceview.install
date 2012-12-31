@@ -1,3 +1,2 @@
 androidsdk-traceview.jar usr/share/java
 traceview/etc/traceview usr/bin
-debian/traceview.desktop usr/share/applications
