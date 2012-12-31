@@ -22,6 +22,9 @@ common-post-build-indep::
 	jar uf androidsdk-traceview.jar -C traceview/src/resources icons
 	jh_manifest -m com.android.traceview.MainWindow androidsdk-traceview.jar
 
+	jar uf androidsdk-uiautomatorviewer.jar -C uiautomatorviewer/src images
+	jh_manifest -m com.android.uiautomator.UiAutomatorViewer androidsdk-uiautomatorviewer.jar
+
 install/androidsdk-ddms::
 	mkdir -p debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps
 	cp ddms/app/src/images/ddms-128.png debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps/ddms.png

@@ -1,0 +1,5 @@
+Bundle-Name: Android UI Automator Viewer
+Bundle-SymbolicName: com.android.uiautomator
+Bundle-Version: 1.0.0
+Bundle-Vendor: Debian.org
+Import-Package: *

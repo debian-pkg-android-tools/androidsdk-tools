@@ -118,3 +118,14 @@ Description: Tool to profile performance of Android applications
  Traceview is a graphical viewer for execution logs saved by your application.
  It can help you debug your application and profile its performance.
 
+Package: androidsdk-uiautomatorviewer
+Section: java
+Architecture: all
+Depends: ${java:Depends}, ${misc:Depends}
+Description: Tool to scan and analyze the UI components of an Android application
+ The uiautomatorviewer tool provides a convenient visual interface to inspect
+ the layout hierarchy and view the properties of the individual UI components
+ that are displayed on the test device. Using this information, you can later
+ create uiautomator tests with selector objects that target specific UI
+ components to test.
+

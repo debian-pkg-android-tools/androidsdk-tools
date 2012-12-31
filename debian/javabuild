@@ -8,3 +8,4 @@ androidsdk-ddms.jar ddms/app/src
 androidsdk-hierarchyviewerlib.jar hierarchyviewer2/libs/hierarchyviewerlib/src
 androidsdk-hierarchyviewer.jar hierarchyviewer2/app/src
 androidsdk-traceview.jar traceview/src
+androidsdk-uiautomatorviewer.jar uiautomatorviewer/src

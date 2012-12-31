@@ -1,0 +1,56 @@
+From d44f46d96c291a106823c73164719c710ea3ab07 Mon Sep 17 00:00:00 2001
+From: Jakub Adam <jakub.adam@ktknet.cz>
+Date: Mon, 31 Dec 2012 19:35:47 +0100
+Subject: [PATCH] fix-uiautomatorviewer-script-paths.patch
+
+---
+ uiautomatorviewer/etc/uiautomatorviewer |   28 +---------------------------
+ 1 file changed, 1 insertion(+), 27 deletions(-)
+
+diff --git a/uiautomatorviewer/etc/uiautomatorviewer b/uiautomatorviewer/etc/uiautomatorviewer
+index 79faf5a..43198a8 100755
+--- a/uiautomatorviewer/etc/uiautomatorviewer
++++ b/uiautomatorviewer/etc/uiautomatorviewer
+@@ -36,7 +36,7 @@ prog="${progdir}"/"${progname}"
+ cd "${oldwd}"
+ 
+ jarfile=uiautomatorviewer.jar
+-frameworkdir="$progdir"
++frameworkdir="/usr/share/java"
+ libdir="$progdir"
+ if [ ! -r "$frameworkdir/$jarfile" ]
+ then
+@@ -75,30 +75,4 @@ done
+ 
+ jarpath="$frameworkdir/$jarfile"
+ 
+-# Figure out the path to the swt.jar for the current architecture.
+-# if ANDROID_SWT is defined, then just use this.
+-# else, if running in the Android source tree, then look for the correct swt folder in prebuilt
+-# else, look for the correct swt folder in the SDK under tools/lib/
+-swtpath=""
+-if [ -n "$ANDROID_SWT" ]; then
+-    swtpath="$ANDROID_SWT"
+-else
+-    vmarch=`${javaCmd} -jar "${frameworkdir}"/archquery.jar`
+-    if [ -n "$ANDROID_BUILD_TOP" ]; then
+-        osname=`uname -s | tr A-Z a-z`
+-        swtpath="${ANDROID_BUILD_TOP}/prebuilts/tools/${osname}-${vmarch}/swt"
+-    else
+-        swtpath="${frameworkdir}/${vmarch}"
+-    fi
+-fi
+-
+-# Combine the swtpath and the framework dir path.
+-if [ -d "$swtpath" ]; then
+-    frameworkdir="${swtpath}:${frameworkdir}"
+-else
+-    echo "SWT folder '${swtpath}' does not exist."
+-    echo "Please export ANDROID_SWT to point to the folder containing swt.jar for your platform."
+-    exit 1
+-fi
+-
+ exec "${javaCmd}" $javaOpts -Djava.ext.dirs="$frameworkdir" -Dcom.android.uiautomator.bindir="$progdir" -jar "$jarpath" "$@"
+-- 
+1.7.10.4
+
