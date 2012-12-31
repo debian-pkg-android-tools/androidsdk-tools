@@ -10,6 +10,7 @@ where the following files and directories have been deleted:
     - ddms
     - hierarchyviewer2
     - traceview
+    - uiautomatorviewer
  - common/tests
  - sdkmanager/libs/sdklib/tests
  - ddms/libs/ddmlib/tests
