@@ -1,13 +1,14 @@
-From: Jakub Adam <jakub.adam@ktknet.cz>
-Date: Sat, 22 Dec 2012 21:46:13 +0100
-Subject: fix-ddms-script-paths
+From 58bd8bf92acdb6538e5565cfdb14d9a3bf5d6ae4 Mon Sep 17 00:00:00 2001
+From: Jakub Adam <jakub.adam@tieto.com>
+Date: Fri, 15 Mar 2013 12:11:29 +0100
+Subject: [PATCH] fix-ddms-script-paths
 
 ---
  ddms/app/etc/ddms |   27 ++-------------------------
  1 file changed, 2 insertions(+), 25 deletions(-)
 
 diff --git a/ddms/app/etc/ddms b/ddms/app/etc/ddms
-index d698ec3..8390aff 100755
+index 79b93f9..b27b8d9 100755
 --- a/ddms/app/etc/ddms
 +++ b/ddms/app/etc/ddms
 @@ -34,7 +34,7 @@ prog="${progdir}"/`basename "${prog}"`
@@ -19,7 +20,7 @@ index d698ec3..8390aff 100755
  libdir="$progdir"
  if [ ! -r "$frameworkdir/$jarfile" ]
  then
-@@ -77,33 +77,10 @@ fi
+@@ -77,29 +77,6 @@ fi
  
  jarpath="$frameworkdir/$jarfile:$frameworkdir/swtmenubar.jar"
  
@@ -46,11 +47,16 @@ index d698ec3..8390aff 100755
 -    exit 1
 -fi
 -
- echo "The standalone version of DDMS is deprecated."
- echo "Please use Android Device Monitor (tools/monitor) instead."
+ if [ -x $progdir/monitor ]; then
+     echo "The standalone version of DDMS is deprecated."
+     echo "Please use Android Device Monitor (tools/monitor) instead."
+@@ -107,5 +84,5 @@ fi
  exec "$javaCmd" \
      -Xmx256M $os_opts $java_debug \
      -Dcom.android.ddms.bindir="$progdir" \
 -    -classpath "$jarpath:$swtpath/swt.jar" \
 +    -classpath "$jarpath" \
      com.android.ddms.Main "$@"
+-- 
+1.7.10.4
+

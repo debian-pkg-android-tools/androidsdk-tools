@@ -1,6 +1,6 @@
-From 15b77af5052722a3a8b2b9e03f81d100e0be0cab Mon Sep 17 00:00:00 2001
-From: Jakub Adam <jakub.adam@ktknet.cz>
-Date: Sun, 23 Dec 2012 22:08:23 +0100
+From a34f30a3a3eff137c0cc2d6ef16798dfbb4510ff Mon Sep 17 00:00:00 2001
+From: Jakub Adam <jakub.adam@tieto.com>
+Date: Fri, 15 Mar 2013 12:29:29 +0100
 Subject: [PATCH] fix-traceview-script-paths
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] fix-traceview-script-paths
  1 file changed, 1 insertion(+), 27 deletions(-)
 
 diff --git a/traceview/etc/traceview b/traceview/etc/traceview
-index bf0bd3b..83a556c 100755
+index cd4a25f..5c73534 100755
 --- a/traceview/etc/traceview
 +++ b/traceview/etc/traceview
 @@ -36,7 +36,7 @@ prog="${progdir}"/"${progname}"
@@ -50,9 +50,9 @@ index bf0bd3b..83a556c 100755
 -    exit 1
 -fi
 -
- echo "The standalone version of traceview is deprecated."
- echo "Please use Android Device Monitor (tools/monitor) instead."
- exec "${javaCmd}" $javaOpts -Djava.ext.dirs="$frameworkdir" -Dcom.android.traceview.toolsdir="$progdir" -jar "$jarpath" "$@"
+ if [ -x $progdir/monitor ]; then
+     echo "The standalone version of traceview is deprecated."
+     echo "Please use Android Device Monitor (tools/monitor) instead."
 -- 
 1.7.10.4
 

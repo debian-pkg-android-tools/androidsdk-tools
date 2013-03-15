@@ -1,6 +1,6 @@
-From 539a85ea22cdd91106b8a669bbc75e7e54c11cdb Mon Sep 17 00:00:00 2001
-From: Jakub Adam <jakub.adam@ktknet.cz>
-Date: Sat, 22 Dec 2012 23:10:49 +0100
+From 465d2f18b59f855983b3c9259447c379d47d2a03 Mon Sep 17 00:00:00 2001
+From: Jakub Adam <jakub.adam@tieto.com>
+Date: Fri, 15 Mar 2013 12:22:11 +0100
 Subject: [PATCH] fix-hierarchyviewer-script-paths
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] fix-hierarchyviewer-script-paths
  1 file changed, 2 insertions(+), 25 deletions(-)
 
 diff --git a/hierarchyviewer2/app/etc/hierarchyviewer b/hierarchyviewer2/app/etc/hierarchyviewer
-index 7ed10e0..da1ed29 100755
+index a0cc5f9..76ff55f 100755
 --- a/hierarchyviewer2/app/etc/hierarchyviewer
 +++ b/hierarchyviewer2/app/etc/hierarchyviewer
 @@ -35,7 +35,7 @@ prog="${progdir}"/`basename "${prog}"`
@@ -47,10 +47,10 @@ index 7ed10e0..da1ed29 100755
 -    exit 1
 -fi
 -
- # need to use "java.ext.dirs" because "-jar" causes classpath to be ignored
- # might need more memory, e.g. -Xmx128M
- echo "The standalone version of hieararchyviewer is deprecated."
-@@ -108,5 +85,5 @@ echo "Please use Android Device Monitor (tools/monitor) instead."
+ if [ -x $progdir/monitor ]; then
+     echo "The standalone version of hieararchyviewer is deprecated."
+     echo "Please use Android Device Monitor (tools/monitor) instead."
+@@ -110,5 +87,5 @@ fi
  exec "$javaCmd" \
      -Xmx512M $os_opts $java_debug \
      -Dcom.android.hierarchyviewer.bindir="$progdir" \
