@@ -11,7 +11,7 @@ then
     exit
 fi
 
-REVISION=21
+REVISION=21.1
 
 git clone -b tools_r$REVISION https://android.googlesource.com/platform/sdk androidsdk-tools
 VERSION=`git --git-dir=androidsdk-tools/.git log -1 --format=%cd~%h --date=short | sed s/-//g`
