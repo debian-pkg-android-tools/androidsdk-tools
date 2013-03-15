@@ -2,7 +2,7 @@ androidsdk-common.jar .
 androidsdk-sdklib.jar androidsdk-common.jar guava.jar
 androidsdk-sdkstats.jar androidsdk-common.jar swt.jar org.eclipse.jface.jar
 androidsdk-swtmenubar.jar swt.jar
-androidsdk-ddmlib.jar .
+androidsdk-ddmlib.jar kxml2.jar
 androidsdk-ddmuilib.jar androidsdk-ddmlib.jar jfreechart.jar jfreechart-swt.jar
 androidsdk-ddms.jar androidsdk-ddmlib.jar androidsdk-ddmuilib.jar androidsdk-sdkstats.jar androidsdk-swtmenubar.jar  org.eclipse.jface.jar
 androidsdk-hierarchyviewerlib.jar androidsdk-ddmlib.jar androidsdk-ddmuilib.jar org.eclipse.jface.jar swt.jar
