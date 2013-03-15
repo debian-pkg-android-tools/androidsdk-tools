@@ -11,20 +11,19 @@ where the following files and directories have been deleted:
     - hierarchyviewer2
     - traceview
     - uiautomatorviewer
- - common/tests
- - sdkmanager/libs/sdklib/tests
- - ddms/libs/ddmlib/tests
+ - common/src/test
+ - sdkmanager/libs/sdklib/src/test
+ - ddms/libs/ddmlib/src/test
  - ddms/libs/ddmuilib/tests
- - all directories/ files in sdkmanager/libs/sdklib/src/com/android/sdklib/ except
+ - all directories/ files in sdkmanager/libs/sdklib/src/main/java/com/android/sdklib/ except
     - build
     - internal/build
     - util
     - SdkConstants.java
     - ISdkLog.java
    (we don't want to update the sdk through the android package system)
- - sdkmanager/libs/sdklib/sdc/com/android/sdklib/internal/build/MakeIdentity.java
+ - sdkmanager/libs/sdklib/src/main/java/com/android/sdklib/internal/build/MakeIdentity.java
    (this file contains a reference to a file for which I cannot find the sources)
  - all directories starting with '.' (except '.' itself)
 
 The script 'orig-tar.sh' can be used to generate the source archive.
-
