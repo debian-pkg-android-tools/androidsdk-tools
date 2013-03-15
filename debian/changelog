@@ -1,5 +1,5 @@
-androidsdk-tools (21+git20121220~4750e51-1) UNRELEASED; urgency=low
+androidsdk-tools (21.1+git20130308~3b5a15e-1) UNRELEASED; urgency=low
 
   * Initial release (Closes: #687057).
 
- -- Jakub Adam <jakub.adam@ktknet.cz>  Sat, 22 Dec 2012 20:58:58 +0100
+ -- Jakub Adam <jakub.adam@ktknet.cz>  Fri, 15 Mar 2013 08:08:59 +0100
