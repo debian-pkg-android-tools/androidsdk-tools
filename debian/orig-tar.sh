@@ -39,7 +39,7 @@ rm -fr androidsdk-tools/common/tests/.project
 rm -fr androidsdk-tools/common/tests/.classpath
 rm -fr androidsdk-tools/.gitignore
 
-echo "Packging archive into ../android-sdk-tools_$REVISION+git$VERSION.orig.tar.gz ..."
+echo "Packaging archive into ../android-sdk-tools_$REVISION+git$VERSION.orig.tar.gz ..."
 tar -czf ../androidsdk-tools_$REVISION+git$VERSION.orig.tar.gz androidsdk-tools
 echo "Deleting folder 'androidsdk-tools'"
 rm -Ir androidsdk-tools
