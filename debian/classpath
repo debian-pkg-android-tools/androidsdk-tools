@@ -8,4 +8,4 @@ androidsdk-ddms.jar androidsdk-ddmlib.jar androidsdk-ddmuilib.jar androidsdk-sdk
 androidsdk-hierarchyviewerlib.jar androidsdk-ddmlib.jar androidsdk-ddmuilib.jar org.eclipse.jface.jar swt.jar
 androidsdk-hierarchyviewer.jar androidsdk-hierarchyviewerlib.jar androidsdk-swtmenubar.jar androidsdk-common.jar
 androidsdk-traceview.jar org.eclipse.jface.jar swt.jar
-androidsdk-uiautomatorviewer.jar org.eclipse.jface.jar swt.jar
+androidsdk-uiautomatorviewer.jar org.eclipse.jface.jar swt.jar androidsdk-common.jar androidsdk-ddmlib.jar

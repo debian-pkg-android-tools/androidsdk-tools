@@ -72,7 +72,8 @@ Package: androidsdk-ddms
 Section: java
 Architecture: all
 Depends: libandroidsdk-swtmenubar-java, libandroidsdk-ddmlib-java,
- libandroidsdk-ddmuilib-java, ${java:Depends}, ${misc:Depends}
+ libandroidsdk-ddmuilib-java, libandroidsdk-sdkstats-java,
+ ${java:Depends}, ${misc:Depends}
 Description: Graphical debugging tool for Android
  Dalvik Debug Monitor is a tool for debugging Android applications. Among
  others, it provides these capabilities:
@@ -122,7 +123,8 @@ Description: Tool to profile performance of Android applications
 Package: androidsdk-uiautomatorviewer
 Section: java
 Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}
+Depends: libandroidsdk-common-java, libandroidsdk-ddmlib-java,
+ ${java:Depends}, ${misc:Depends}
 Description: Tool to scan and analyze the UI components of an Android application
  The uiautomatorviewer tool provides a convenient visual interface to inspect
  the layout hierarchy and view the properties of the individual UI components
