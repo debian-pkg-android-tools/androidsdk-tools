@@ -22,7 +22,8 @@ Description: Android sdk tools common library
 Package: libandroidsdk-sdklib-java
 Section: java
 Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-common-java
+Depends: libandroidsdk-common-java (= ${binary:Version}),
+ ${java:Depends}, ${misc:Depends}
 Description: Android sdklib
  The android sdklib contains the resource assembler that compiles
  the static resource files of an android project.
@@ -32,7 +33,8 @@ Description: Android sdklib
 Package: libandroidsdk-sdkstats-java
 Section: java
 Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-common-java
+Depends: libandroidsdk-common-java (= ${binary:Version}),
+ ${java:Depends}, ${misc:Depends}
 Description: Sends Android SDK usage statistics to Google
  This library sends reports about usage of Android SDK to Google server.
  Information can be used to help improving the software.
@@ -61,7 +63,8 @@ Description: Library for communicaton with connected Android devices
 Package: libandroidsdk-ddmuilib-java
 Section: java
 Architecture: all
-Depends: ${java:Depends}, ${misc:Depends}, libandroidsdk-ddmlib-java
+Depends: libandroidsdk-ddmlib-java (= ${binary:Version}),
+ ${java:Depends}, ${misc:Depends}
 Description: User interface library for ddmlib
  Dalvik Debug Monitor Server provides a way to communicate via adb with
  Android devices connected through USB or running in emulator.
@@ -71,8 +74,10 @@ Description: User interface library for ddmlib
 Package: androidsdk-ddms
 Section: java
 Architecture: all
-Depends: libandroidsdk-swtmenubar-java, libandroidsdk-ddmlib-java,
- libandroidsdk-ddmuilib-java, libandroidsdk-sdkstats-java,
+Depends: libandroidsdk-swtmenubar-java (= ${binary:Version}),
+ libandroidsdk-ddmlib-java (= ${binary:Version}),
+ libandroidsdk-ddmuilib-java (= ${binary:Version}),
+ libandroidsdk-sdkstats-java (= ${binary:Version}),
  ${java:Depends}, ${misc:Depends}
 Description: Graphical debugging tool for Android
  Dalvik Debug Monitor is a tool for debugging Android applications. Among
@@ -91,7 +96,8 @@ Description: Graphical debugging tool for Android
 Package: libandroidsdk-hierarchyviewerlib-java
 Section: java
 Architecture: all
-Depends: libandroidsdk-ddmuilib-java, ${java:Depends}, ${misc:Depends}
+Depends: libandroidsdk-ddmuilib-java (= ${binary:Version}),
+ ${java:Depends}, ${misc:Depends}
 Description: Android Hierarchy Viewer library
  Hierarchy Viewer allows you to debug and optimize your user interface.
  It provides a visual representation of the layout's View hierarchy
@@ -101,8 +107,10 @@ Description: Android Hierarchy Viewer library
 Package: androidsdk-hierarchyviewer
 Section: java
 Architecture: all
-Depends: libandroidsdk-hierarchyviewerlib-java, libandroidsdk-common-java,
- libandroidsdk-swtmenubar-java, ${java:Depends}, ${misc:Depends}
+Depends: libandroidsdk-hierarchyviewerlib-java (= ${binary:Version}),
+ libandroidsdk-common-java (= ${binary:Version}),
+ libandroidsdk-swtmenubar-java (= ${binary:Version}),
+ ${java:Depends}, ${misc:Depends}
 Description: Tool to debug and optimize Android user interface
  Hierarchy Viewer allows you to debug and optimize your user interface.
  It provides a visual representation of the layout's View hierarchy
@@ -123,7 +131,8 @@ Description: Tool to profile performance of Android applications
 Package: androidsdk-uiautomatorviewer
 Section: java
 Architecture: all
-Depends: libandroidsdk-common-java, libandroidsdk-ddmlib-java,
+Depends: libandroidsdk-common-java (= ${binary:Version}),
+ libandroidsdk-ddmlib-java (= ${binary:Version}),
  ${java:Depends}, ${misc:Depends}
 Description: Tool to scan and analyze the UI components of an Android application
  The uiautomatorviewer tool provides a convenient visual interface to inspect
