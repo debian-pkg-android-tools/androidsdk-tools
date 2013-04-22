@@ -1,11 +1,11 @@
 androidsdk-common.jar common/src
-androidsdk-sdklib.jar sdkmanager/libs/sdklib/src
+androidsdk-sdklib.jar sdklib/src
 androidsdk-sdkstats.jar sdkstats/src
 androidsdk-swtmenubar.jar swtmenubar/src
-androidsdk-ddmlib.jar ddms/libs/ddmlib/src
-androidsdk-ddmuilib.jar ddms/libs/ddmuilib/src
+androidsdk-ddmlib.jar ddmlib/src
+androidsdk-ddmuilib.jar ddms/ddmuilib/src
 androidsdk-ddms.jar ddms/app/src
-androidsdk-hierarchyviewerlib.jar hierarchyviewer2/libs/hierarchyviewerlib/src
+androidsdk-hierarchyviewerlib.jar hierarchyviewer2/hierarchyviewer2lib/src
 androidsdk-hierarchyviewer.jar hierarchyviewer2/app/src
 androidsdk-traceview.jar traceview/src
 androidsdk-uiautomatorviewer.jar uiautomatorviewer/src

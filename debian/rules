@@ -10,30 +10,32 @@ common-post-build-indep::
 		bnd wrap -properties $$BNDFILE -output $$JARNAME $$JARNAME; \
 	done
 
-	jar uf androidsdk-ddmuilib.jar -C ddms/libs/ddmuilib/src images
+	jar uf androidsdk-ddmuilib.jar -C ddms/ddmuilib/src/main/java images
 
-	jar uf androidsdk-ddms.jar -C ddms/app/src images
+	jar uf androidsdk-ddms.jar -C ddms/app/src/main/resources images
 	jh_manifest -m com.android.ddms.Main androidsdk-ddms.jar
 
-	jar uf androidsdk-hierarchyviewerlib.jar -C hierarchyviewer2/libs/hierarchyviewerlib/src images
+	jar uf androidsdk-hierarchyviewerlib.jar -C hierarchyviewer2/hierarchyviewer2lib/src/main/java images
 
 	jh_manifest -m com.android.hierarchyviewer.HierarchyViewerApplication androidsdk-hierarchyviewer.jar
 
-	jar uf androidsdk-traceview.jar -C traceview/src/resources icons
+	jar uf androidsdk-traceview.jar -C traceview/src/main/resources icons
 	jh_manifest -m com.android.traceview.MainWindow androidsdk-traceview.jar
 
-	jar uf androidsdk-uiautomatorviewer.jar -C uiautomatorviewer/src images
+	jar uf androidsdk-uiautomatorviewer.jar -C uiautomatorviewer/src/main/java images
 	jh_manifest -m com.android.uiautomator.UiAutomatorViewer androidsdk-uiautomatorviewer.jar
 
 install/androidsdk-ddms::
 	mkdir -p debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps
-	cp ddms/app/src/images/ddms-128.png debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps/ddms.png
+	cp ddms/app/src/main/resources/images/ddms-128.png \
+		debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps/ddms.png
 
+install/androidsdk-hierarchyviewer::
 	mkdir -p debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/128x128/apps
-	cp hierarchyviewer2/libs/hierarchyviewerlib/src/images/sdk-hierarchyviewer-128.png \
+	cp hierarchyviewer2/hierarchyviewer2lib/src/main/java/images/sdk-hierarchyviewer-128.png \
 		debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/128x128/apps/hierarchyviewer.png
 
 	mkdir -p debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/16x16/apps
-	cp hierarchyviewer2/libs/hierarchyviewerlib/src/images/sdk-hierarchyviewer-16.png \
+	cp hierarchyviewer2/hierarchyviewer2lib/src/main/java/images/sdk-hierarchyviewer-16.png \
 		debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/16x16/apps/hierarchyviewer.png
 	chmod 644 debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/16x16/apps/hierarchyviewer.png
