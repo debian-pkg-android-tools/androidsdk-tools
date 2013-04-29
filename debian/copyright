@@ -36,6 +36,7 @@ License: GPL-2+
  `/usr/share/common-licenses/GPL-2'.
 
 Files: debian/ddms.pod
+       debian/hierarchyviewer.pod
 Copyright: 2013, www.linuxtopia.org
            2012-2013, Jakub Adam <jakub.adam@ktknet.cz>
 License: Apache-2.0

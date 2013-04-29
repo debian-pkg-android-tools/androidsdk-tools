@@ -27,7 +27,9 @@ common-post-build-indep::
 	jar uf androidsdk-uiautomatorviewer.jar -C uiautomatorviewer/src/main/java images
 	jh_manifest -m com.android.uiautomator.UiAutomatorViewer androidsdk-uiautomatorviewer.jar
 
-	$(POD2MAN) -s 1 debian/ddms.pod ddms.1
+	for man in debian/*.pod; do \
+		$(POD2MAN) -s 1 $$man $$(basename $$man .pod).1; \
+	done
 
 install/androidsdk-ddms::
 	mkdir -p debian/androidsdk-ddms/usr/share/icons/hicolor/128x128/apps
@@ -45,4 +47,4 @@ install/androidsdk-hierarchyviewer::
 	chmod 644 debian/androidsdk-hierarchyviewer/usr/share/icons/hicolor/16x16/apps/hierarchyviewer.png
 
 clean::
-	rm -f ddms.1
+	rm -f *.1
