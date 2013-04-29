@@ -3,7 +3,7 @@ Upstream-Name: Developement tools for the android SDK
 Source: https://android.googlesource.com/platform/sdk
 
 Files: *
-Copyright: 2005-2012, The Android Open Source Project
+Copyright: 2005-2013, The Android Open Source Project
 License: Apache 2.0
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ License: Apache 2.0
  can be found in the file `/usr/share/common-licenses/Apache-2.0'.
 
 Files: swtmenubar/*
-Copyright: 2011, The Android Open Source Project
+Copyright: 2011-2012, The Android Open Source Project
 License: EPL-1.0
 
 Files: debian/*
