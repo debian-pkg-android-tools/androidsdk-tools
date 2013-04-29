@@ -1,0 +1,288 @@
+=head1 NAME
+
+ddms - a graphical debugging tool for Android
+
+=head1 SYNOPSIS
+
+ddms
+
+=head1 DESCRIPTION
+
+Dalvik Debug Monitor Service (DDMS) provides port-forwarding services, screen
+capture on the device, thread and heap information on the device, logcat,
+process, and radio state information, incoming call and SMS spoofing, location
+data spoofing, and more. This page provides a modest discussion of DDMS
+features; it is not an exhaustive exploration of all the features and
+capabilities.
+
+DDMS will work with both the emulator and a connected device. If both are
+connected and running simultaneously, DDMS defaults to the emulator.
+
+=head2 How DDMS works
+
+DDMS acts as a middleman to connect the IDE to the applications running on
+the device. On Android, every application runs in its own process, each of
+which hosts its own virtual machine (VM). And each process listens for
+a debugger on a different port.
+
+When it starts, DDMS connects to adb and starts a device monitoring service
+between the two, which will notify DDMS when a device is connected or
+disconnected. When a device is connected, a VM monitoring service is created
+between adb and DDMS, which will notify DDMS when a VM on the device is started
+or terminated. Once a VM is running, DDMS retrieves the the VM's process ID
+(pid), via adb, and opens a connection to the VM's debugger, through the adb
+daemon (adbd) on the device. DDMS can now talk to the VM using a custom wire
+protocol.
+
+For each VM on the device, DDMS opens a port upon which it will listen for
+a debugger. For the first VM, DDMS listens for a debugger on port 8600, the next
+on 8601, and so on. When a debugger connects to one of these ports, all traffic
+is forwarded between the debugger and the associated VM. Debugging can then
+process like any remote debugging session.
+
+DDMS also opens another local port, the DDMS "base port" (8700, by default),
+upon which it also listens for a debugger. When a debugger connects to this
+base port, all traffic is forwarded to the VM currently selected in DDMS, so
+this is typically where you debugger should connect.
+
+Tip: You can set a number of DDMS preferences in File > Preferences. Preferences
+are saved to "$HOME/.ddmsrc".
+
+=head3 Known debugging issues with Dalvik
+
+Debugging an application in the Dalvik VM should work the same as it does in
+other VMs. However, when single-stepping out of synchronized code, the
+"current line" cursor may jump to the last line in the method for one step.
+
+=head2 Left Pane
+
+The left side of the Debug Monitor shows each emulator/device currently found,
+with a list of all the VMs currently running within each. VMs are identified
+by the package name of the application it hosts.
+
+Use this list to find and attach to the VM running the activity(ies) that you
+want to debug. Next to each VM in the list is a "debugger pass-through" port
+(in the right-most column). If you connect your debugger to one of the the ports
+listed, you will be connected to the corresponding VM on the device. However,
+when using DDMS, you need only connect to port 8700, as DDMS forwards all
+traffic here to the currently selected VM. (Notice, as you select a VM in the
+list, the listed port includes 8700.) This way, there's no need to reconfigure
+the debugger's port each time you switch between VMs.
+
+When an application running on the device calls waitForDebugger() (or you
+select this option in the developer options), a red icon will be shown next to
+the client name, while it waits for the debugger to attach to the VM. When
+a debugger is connected, the icon will turn green.
+
+If you see a crossed-out bug icon, this means that the DDMS was unable to
+complete a connection between the debugger and the VM because it was unable to
+open the VM's local port. If you see this for all VMs on the device, it is
+likely because you have another instance of DDMS running (this includes the
+Eclipse plugin).
+
+If you see a question mark in place of an application package, this means that,
+once DDMS received the application pid from adb, it somehow failed to make
+a successful handshake with the VM process. Try restarting DDMS.
+
+=head2 Right pane
+
+On the right side, the Debug Monitor provides tabs that display useful
+information and some useful tools.
+
+=head2 Info
+
+This view shows some general information about the selected VM, including the
+process ID, package name, and VM version.
+
+=head2 Threads
+
+The threads view has a list of threads running in the process of the target VM.
+To reduce the amount of data sent over the wire, the thread updates are only
+sent when explicitly enabled by toggling the "threads" button in the toolbar.
+This toggle is maintained per VM. This tab includes the following information:
+
+B<ID> a VM-assigned unique thread ID. In Dalvik, these are odd numbers starting
+from 3.
+
+B<Tid> the Linux thread ID. For the main thread in a process, this will match
+the process ID.
+
+B<Status> the VM thread status. Daemon threads are shown with an asterisk (*).
+This will be one of the following:
+
+    running  - executing application code
+    sleeping - called Thread.sleep()
+    monitor  - waiting to acquire a monitor lock
+    wait     - in Object.wait()
+    native   - executing native code
+    vmwait   - waiting on a VM resource
+    zombie   - thread is in the process of dying
+    init     - thread is initializing (you shouldn't see this)
+    starting - thread is about to start (you shouldn't see this either)
+
+B<utime> cumulative time spent executing user code, in "jiffies" (usually 10ms).
+Only available under Linux.
+
+B<stime> cumulative time spent executing system code, in "jiffies" (usually
+10ms).
+
+B<Name> the name of the thread
+
+"ID" and "Name" are set when the thread is started. The remaining fields are
+updated periodically (default is every 4 seconds).
+
+=head2 VM Heap
+
+Displays some heap stats, updated during garbage collection. If, when a VM is
+selected, the VM Heap view says that heap updates are not enabled, click the
+"Show heap updates" button, located in the top-left toolbar. Back in the VM
+Heap view, click Cause GC to perform garbage collection and update the heap
+stats.
+
+=head2 Allocation Tracker
+
+In this view, you can track the memory allocation of each virtual machine. With
+a VM selected in the left pane, click Start Tracking, then Get Allocations to
+view all allocations since tracking started. The table below will be filled
+with all the relevant data. Click it again to refresh the list.
+
+=head2 Emulator Control
+
+With these controls, you can simulate special device states and activities. Features include:
+
+B<Telephony Status> change the state of the phone's Voice and Data plans (home,
+roaming, searching, etc.), and simulate different kinds of network Speed and
+Latency (GPRS, EDGE, UTMS, etc.).
+
+B<Telephony Actions> perform simulated phone calls and SMS messages to the
+emulator.
+
+B<Location Controls> send mock location data to the emulator so that you can
+perform location-aware operations like GPS mapping.
+
+To use the Location Controls, launch your application in the Android emulator
+and open DDMS. Click the Emulator Controls tab and scroll down to Location
+Controls. From here, you can:
+
+=over 3
+
+=item -
+
+Manually send individual longitude/latitude coordinates to the device.
+
+Click Manual, select the coordinate format, fill in the fields and click Send.
+
+=item -
+
+Use a GPX file describing a route for playback to the device.
+
+Click GPX and load the file. Once loaded, click the play button to playback the
+route for your location-aware application.
+
+When performing playback from GPX, you can adjust the speed of playback from
+the DDMS panel and control playback with the pause and skip buttons. DDMS will
+parse both the waypoints (<wpt>, in the first table), and the tracks (<trk>,
+in the second table, with support for multiple segments, <trkseg>, although they
+are simply concatenated). Only the tracks can be played. Clicking a waypoint in
+the first list simply sends its coordinate to the device, while selecting a
+track lets you play it.
+
+=item -
+
+Use a KML file describing individual placemarks for sequenced playback to the
+device.
+
+Click KML and load the file. Once loaded, click the play button to send the
+coordinates to your location-aware application.
+
+When using a KML file, it is parsed for a <coordinates> element. The value of
+which should be a single set of longitude, latitude and altitude figures. For
+example:
+
+<coordinates>-122.084143,37.421972,4</coordinates>
+
+In your file, you may include multiple <Placemark> elements, each containing a
+<coordinates> element. When you do so, the collection of placemarks will be
+added as tracks. DDMS will send one placemark per second to the device.
+
+B<Note:> DDMS does not support routes created with the
+<MultiGeometry><LineString>lat1, long1, lat2, long2,
+...</LineString></MultiGeometry> methods. There is also currently no support
+for the <TimeStamp> node inside the <Placemark>. Future releases may support
+timed placement and routes within a single coordinate element.
+
+=back
+
+=head2 File Explorer
+
+With the File Explorer, you can view the device file system and perform basic
+management, like pushing and pulling files. This circumvents using the adb
+push and pull commands, with a GUI experience.
+
+With DDMS open, select Device > File Explorer... to open the File Explorer
+window. You can drag-and-drop into the device directories, but cannot drag out
+of them. To copy files from the device, select the file and click the Pull File
+from Device button in the toolbar. To delete files, use the Delete button in the
+toolbar.
+
+If you're interested in using an SD card image on the emulator, you're still
+required to use the mksdcard command to create an image, and then mount it
+during emulator bootup. For example, from the /tools directory, execute:
+
+$ mksdcard 1024M ./img
+$ emulator -sdcard ./img
+
+Now, when the emulator is running, the DDMS File Explorer will be able to read
+and write to the sdcard directory. However, your files may not appear
+automatically. For example, if you add an MP3 file to the sdcard, the media
+player won't see them until you restart the emulator. (When restarting the
+emulator from command line, be sure to mount the sdcard again.)
+
+=head2 Screen Capture
+
+You can capture screen images on the device or emulator by selecting
+Device > Screen capture... in the menu bar, or press CTRL-S.
+
+=head2 Exploring Processes
+
+You can see the output of ps -x for a specific VM by selecting Device > Show
+process status... in the menu bar.
+
+=head2 Cause a GC to Occur
+
+Cause garbage collection to occury by pressing the trash can button on the
+toolbar.
+
+=head2 Running Dumpsys and Dumpstate on the Device (logcat)
+
+To run dumpsys (logcat) from Dalvik, select Device > Run logcat... in the menu
+bar.
+
+To run dumpstate from Dalvik, select Device > Dump device state... in the menu
+bar.
+
+=head2 Examine Radio State
+
+By default, radio state is not output during a standard logcat (it is a lot of
+information). To see radio information, either click
+Device > Dump radio state... or run logcat as described in Logging Radio
+Information.
+
+=head2 Stop a Virtual Machine
+
+You can stop a virtual machine by selecting Actions > Halt VM. Pressing this
+button causes the VM to call System.exit(1).
+
+=head1 KNOWN ISSUES
+
+If you connect and disconnect a debugger, ddms drops and reconnects the client
+so the VM realizes that the debugger has gone away. This will be fixed
+eventually.
+
+=head1 COPYRIGHT
+
+This manual page is licensed under the Apache License, Version 2.0.
+
+Copyright (C) 2013 www.linuxtopia.org
+
+Copyright (C) 2013 Jakub Adam <jakub.adam@ktknet.cz>
