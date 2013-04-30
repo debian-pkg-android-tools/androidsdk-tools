@@ -1,6 +1,6 @@
 =head1 NAME
 
-ddms - a tool to debug and optimize Android user interface
+hierarchyviewer - a tool to debug and optimize Android user interface
 
 =head1 SYNOPSIS
 
