@@ -1,0 +1,80 @@
+=head1 NAME
+
+uiautomatorviewer - a GUI tool to scan and analyze the UI components of an
+Android application.
+
+=head1 SYNOPSIS
+
+uiautomatorviewer
+
+=head1 DESCRIPTION
+
+You can use the uiautomatorviewer tool to take a snapshot of the foreground UI
+screen on any Android device that is connected to your development machine. The
+uiautomatorviewer tool provides a convenient visual interface to inspect the
+layout hierarchy and view the properties of the individual UI components that
+are displayed on the test device. Using this information, you can later create
+uiautomator tests with selector objects that target specific UI components to
+test.
+
+To analyze the UI components of the application that you want to test:
+
+=over 3
+
+=item 1.
+
+Connect your Android device to your development machine.
+
+=item 2.
+
+Run the uiautomatorviewer tool.
+
+=item 3.
+
+To capture a screen for analysis, click the Device Screenshot button in the GUI
+of the uiautomatorviewer tool.
+
+B<Note:> If you have more than one device connected, specify the device for
+screen capture by setting the ANDROID_SERIAL environment variable:
+
+=over 4
+
+Find the serial numbers for your connected devices by running this command:
+
+$ adb devices
+
+Set the ANDROID_SERIAL environment variable to select the device to test:
+
+$ export ANDROID_SERIAL=<device serial number>
+
+If you are connected to only a single device, you do not need to set the
+ANDROID_SERIAL environment variable.
+
+=back
+
+=item 4.
+
+View the UI properties for your application:
+
+=over 4
+
+Hover over the snapshot in the left-hand panel to see the UI components
+identified by the uiautomatorviewer tool. You can view the component’s
+properties listed in the lower right-hand panel, and the layout hierarchy in
+the upper right-hand panel.
+
+Optionally, click on the Toggle NAF Nodes button to see UI components that are
+not accessible to the uiautomator testing framework. Only limited information
+may be available for these components.
+
+=back
+
+=back
+
+=head1 COPYRIGHT
+
+This manual page is licensed under the Apache License, Version 2.0.
+
+Copyright (C) 2013 Android Open Source Project
+
+Copyright (C) 2013 Jakub Adam <jakub.adam@ktknet.cz>
