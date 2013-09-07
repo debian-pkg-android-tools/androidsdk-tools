@@ -41,7 +41,7 @@ panes.
 
 =head2 Timeline Panel
 
-Each thread’s execution is shown in its own row, with time increasing to the
+Each thread's execution is shown in its own row, with time increasing to the
 right. Each method is shown in another color (colors are reused in a round-robin
 fashion starting with the methods that have the most inclusive time). The thin
 lines underneath the first row show the extent (entry to exit) of all the calls

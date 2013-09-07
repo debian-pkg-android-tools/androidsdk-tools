@@ -59,7 +59,7 @@ View the UI properties for your application:
 =over 4
 
 Hover over the snapshot in the left-hand panel to see the UI components
-identified by the uiautomatorviewer tool. You can view the component’s
+identified by the uiautomatorviewer tool. You can view the component's
 properties listed in the lower right-hand panel, and the layout hierarchy in
 the upper right-hand panel.
 

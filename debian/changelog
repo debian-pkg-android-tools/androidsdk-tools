@@ -1,6 +1,8 @@
 androidsdk-tools (22.2+git20130830~92d25d6-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Remove non-ASCII characters from d/*.pod
+    - fixes FTBFS with perl 5.18.
 
  -- Jakub Adam <jakub.adam@ktknet.cz>  Sat, 07 Sep 2013 16:54:19 +0200
 
