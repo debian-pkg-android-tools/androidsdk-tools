@@ -17,6 +17,7 @@
 package com.android.ddmuilib.heap;
 
 import com.android.ddmlib.NativeAllocationInfo;
+import com.google.common.collect.Sets;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -46,8 +47,44 @@ public class NativeHeapDiffSnapshot extends NativeHeapSnapshot {
             NativeHeapSnapshot oldSnapshot) {
         Set<NativeAllocationInfo> allocations =
                 new HashSet<NativeAllocationInfo>(newSnapshot.getAllocations());
+
+        // compute new allocations
         allocations.removeAll(oldSnapshot.getAllocations());
-        return new ArrayList<NativeAllocationInfo>(allocations);
+
+        // Account for allocations with the same stack trace that were
+        // present in the older set of allocations.
+        // e.g. A particular stack trace might have had 3 allocations in snapshot 1,
+        // and 2 more in snapshot 2. We only want to show the new allocations (just the 2 from
+        // snapshot 2). However, the way the allocations are stored, in snapshot 2, we'll see
+        // 5 allocations at the stack trace. We need to subtract out the 3 from the first allocation
+        Set<NativeAllocationInfo> onlyInPrevious =
+                new HashSet<NativeAllocationInfo>(oldSnapshot.getAllocations());
+        Set<NativeAllocationInfo> newAllocations =
+                Sets.newHashSetWithExpectedSize(allocations.size());
+
+        onlyInPrevious.removeAll(newSnapshot.getAllocations());
+        for (NativeAllocationInfo current : allocations) {
+            NativeAllocationInfo old = getOldAllocationWithSameStack(current, onlyInPrevious);
+            if (old == null) {
+                newAllocations.add(current);
+            } else if (current.getAllocationCount() > old.getAllocationCount()) {
+                newAllocations.add(new NativeDiffAllocationInfo(current, old));
+            }
+        }
+
+        return new ArrayList<NativeAllocationInfo>(newAllocations);
+    }
+
+    private static NativeAllocationInfo getOldAllocationWithSameStack(
+            NativeAllocationInfo info,
+            Set<NativeAllocationInfo> allocations) {
+        for (NativeAllocationInfo a : allocations) {
+            if (info.getSize() == a.getSize() && info.stackEquals(a)) {
+                return a;
+            }
+        }
+
+        return null;
     }
 
     @Override

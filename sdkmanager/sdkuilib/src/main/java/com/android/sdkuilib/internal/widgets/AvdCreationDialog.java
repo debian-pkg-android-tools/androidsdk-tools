@@ -40,6 +40,7 @@ import com.android.sdkuilib.internal.repository.icons.ImageFactory;
 import com.android.sdkuilib.ui.GridDialog;
 import com.android.utils.ILogger;
 import com.android.utils.Pair;
+import com.google.common.base.Joiner;
 
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.swt.SWT;
@@ -145,12 +146,13 @@ public class AvdCreationDialog extends GridDialog {
             ImageFactory imageFactory,
             ILogger log,
             AvdInfo editAvdInfo) {
-
         super(shell, 2, false);
         mAvdManager = avdManager;
         mImageFactory = imageFactory;
         mSdkLog = log;
         mAvdInfo = editAvdInfo;
+
+        setShellStyle(getShellStyle() | SWT.RESIZE);
     }
 
     /** Returns the AVD Created, if successful. */
@@ -411,8 +413,12 @@ public class AvdCreationDialog extends GridDialog {
         mStatusIcon = new Label(mStatusComposite, SWT.NONE);
         mStatusIcon.setLayoutData(new GridData(GridData.BEGINNING, GridData.BEGINNING,
                 false, false));
-        mStatusLabel = new Label(mStatusComposite, SWT.NONE);
-        mStatusLabel.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        mStatusLabel = new Label(mStatusComposite, SWT.WRAP);
+        GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1);
+        // allow for approx 3 lines of text corresponding to the number of lines in the longest
+        // error or warning
+        gridData.heightHint = 50;
+        mStatusLabel.setLayoutData(gridData);
         mStatusLabel.setText(""); //$NON-NLS-1$
     }
 
@@ -830,12 +836,12 @@ public class AvdCreationDialog extends GridDialog {
 
     private void validatePage() {
         String error = null;
-        String warning = null;
+        ArrayList<String> warnings = new ArrayList<String>();
         boolean valid = true;
 
         if (mAvdName.getText().isEmpty()) {
             error = "AVD Name cannot be empty";
-            setPageValid(false, error, warning);
+            setPageValid(false, error, null);
             return;
         }
 
@@ -844,34 +850,65 @@ public class AvdCreationDialog extends GridDialog {
             error = String.format(
                     "AVD name '%1$s' contains invalid characters.\nAllowed characters are: %2$s",
                     avdName, AvdManager.CHARS_AVD_NAME);
-            setPageValid(false, error, warning);
+            setPageValid(false, error, null);
             return;
         }
 
         if (mDevice.getSelectionIndex() < 0) {
-            setPageValid(false, error, warning);
+            error = "No device selected";
+            setPageValid(false, error, null);
             return;
         }
 
-        if (mTarget.getSelectionIndex() < 0 ||
-                !mHaveSystemImage || mAbi.getSelectionIndex() < 0) {
-            setPageValid(false, error, warning);
+        if (mTarget.getSelectionIndex() < 0 || !mHaveSystemImage || mAbi.getSelectionIndex() < 0) {
+            error = "No target selected";
+            setPageValid(false, error, null);
             return;
+        }
+
+        // If the target is an addon, check its base platform requirement is satisfied.
+        String targetName = mTarget.getItem(mTarget.getSelectionIndex());
+        IAndroidTarget target = mCurrentTargets.get(targetName);
+        if (target != null && !target.isPlatform()) {
+
+            ISystemImage[] sis = target.getSystemImages();
+            if (sis != null && sis.length > 0) {
+                // Note: if an addon has no system-images of its own, it depends on its parent
+                // platform and it wouldn't have been loaded properly if the platform were
+                // missing so we don't need to double-check that part here.
+
+                String abiType = getSelectedAbiType(target);
+                if (abiType != null &&
+                        !abiType.isEmpty() &&
+                        target.getParent().getSystemImage(abiType) == null) {
+                    // We have a system-image requirement but there is no such system image
+                    // loaded in the parent platform. This AVD won't run properly.
+                    warnings.add(
+                            String.format(
+                                "This AVD may not work unless you install the %1$s system image " +
+                                "for %2$s (%3$s) first.",
+                                abiType,
+                                target.getParent().getName(),
+                                target.getParent().getVersion().toString()));
+                }
+            }
         }
 
         if (mRam.getText().isEmpty()) {
-            setPageValid(false, error, warning);
+            error = "Mising RAM value";
+            setPageValid(false, error, null);
             return;
         }
 
         if (mVmHeap.getText().isEmpty()) {
-            setPageValid(false, error, warning);
+            error = "Mising VM Heap value";
+            setPageValid(false, error, null);
             return;
         }
 
         if (mDataPartition.getText().isEmpty() || mDataPartitionSize.getSelectionIndex() < 0) {
             error = "Invalid Data partition size.";
-            setPageValid(false, error, warning);
+            setPageValid(false, error, null);
             return;
         }
 
@@ -904,7 +941,7 @@ public class AvdCreationDialog extends GridDialog {
             }
         }
         if (!valid) {
-            setPageValid(valid, error, warning);
+            setPageValid(valid, error, null);
             return;
         }
 
@@ -917,9 +954,10 @@ public class AvdCreationDialog extends GridDialog {
         }
 
         if (mAvdInfo != null && !mAvdInfo.getName().equals(mAvdName.getText())) {
-            warning = String.format("The AVD '%1$s' will be duplicated into '%2$s'.",
-                    mAvdInfo.getName(),
-                    mAvdName.getText());
+            warnings.add(
+                    String.format("The AVD '%1$s' will be duplicated into '%2$s'.",
+                        mAvdInfo.getName(),
+                        mAvdName.getText()));
         }
 
         // On Windows, display a warning if attempting to create AVD's with RAM > 512 MB.
@@ -933,9 +971,10 @@ public class AvdCreationDialog extends GridDialog {
             }
 
             if (ramSize > 768) {
-                warning = "On Windows, emulating RAM greater than 768M may fail depending on the"
-                        + " system load.\nTry progressively smaller values of RAM if the emulator"
-                        + " fails to launch.";
+                warnings.add(
+                    "On Windows, emulating RAM greater than 768M may fail depending on the"
+                    + " system load. Try progressively smaller values of RAM if the emulator"
+                    + " fails to launch.");
             }
         }
 
@@ -944,16 +983,17 @@ public class AvdCreationDialog extends GridDialog {
             error = "GPU Emulation and Snapshot cannot be used simultaneously";
         }
 
+        String warning = Joiner.on('\n').join(warnings);
         setPageValid(valid, error, warning);
         return;
     }
 
     private void setPageValid(boolean valid, String error, String warning) {
         mOkButton.setEnabled(valid);
-        if (error != null) {
-            mStatusIcon.setImage(mImageFactory.getImageByName("reject_icon16.png")); //$NON-NLS-1$
+        if (error != null && !error.isEmpty()) {
+            mStatusIcon.setImage(mImageFactory.getImageByName("reject_icon16.png"));  //$NON-NLS-1$
             mStatusLabel.setText(error);
-        } else if (warning != null) {
+        } else if (warning != null && !warning.isEmpty()) {
             mStatusIcon.setImage(mImageFactory.getImageByName("warning_icon16.png")); //$NON-NLS-1$
             mStatusLabel.setText(warning);
         } else {
@@ -962,6 +1002,7 @@ public class AvdCreationDialog extends GridDialog {
         }
 
         mStatusComposite.pack(true);
+        getShell().layout(true, true);
     }
 
     private boolean createAvd() {
@@ -978,18 +1019,7 @@ public class AvdCreationDialog extends GridDialog {
         }
 
         // get the abi type
-        String abiType = SdkConstants.ABI_ARMEABI;
-        ISystemImage[] systemImages = getSystemImages(target);
-        if (systemImages.length > 0) {
-            int abiIndex = mAbi.getSelectionIndex();
-            if (abiIndex >= 0) {
-                String prettyname = mAbi.getItem(abiIndex);
-                // Extract the abi type
-                int firstIndex = prettyname.indexOf("(");
-                int lastIndex = prettyname.indexOf(")");
-                abiType = prettyname.substring(firstIndex + 1, lastIndex);
-            }
-        }
+        String abiType = getSelectedAbiType(target);
 
         // get the SD card data from the UI.
         String sdName = null;
@@ -1109,6 +1139,22 @@ public class AvdCreationDialog extends GridDialog {
             ((MessageBoxLog) log).displayResult(success);
         }
         return success;
+    }
+
+    private String getSelectedAbiType(IAndroidTarget target) {
+        String abiType = SdkConstants.ABI_ARMEABI;
+        ISystemImage[] systemImages = getSystemImages(target);
+        if (systemImages.length > 0) {
+            int abiIndex = mAbi.getSelectionIndex();
+            if (abiIndex >= 0) {
+                String prettyname = mAbi.getItem(abiIndex);
+                // Extract the abi type
+                int firstIndex = prettyname.indexOf("(");
+                int lastIndex = prettyname.indexOf(")");
+                abiType = prettyname.substring(firstIndex + 1, lastIndex);
+            }
+        }
+        return abiType;
     }
 
     private void fillExistingAvdInfo(AvdInfo avd) {
