@@ -11,7 +11,7 @@ then
     exit
 fi
 
-REVISION=22
+REVISION=22.2
 
 git clone -b tools_r$REVISION https://android.googlesource.com/platform/tools/swt androidsdk-tools
 git clone -b tools_r$REVISION https://android.googlesource.com/platform/tools/base androidsdk-base
