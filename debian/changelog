@@ -1,4 +1,4 @@
-androidsdk-tools (22+git20130416~f55ffbb-1) UNRELEASED; urgency=low
+androidsdk-tools (22+git20130416~f55ffbb-1) unstable; urgency=low
 
   * Initial release (Closes: #687057).
 
