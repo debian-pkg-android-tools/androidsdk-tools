@@ -1,4 +1,4 @@
-androidsdk-tools (22.2+git20130830~92d25d6-1) UNRELEASED; urgency=low
+androidsdk-tools (22.2+git20130830~92d25d6-1) unstable; urgency=low
 
   * New upstream release.
   * Remove non-ASCII characters from d/*.pod
