@@ -1,5 +1,5 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Developement tools for the android SDK
+Upstream-Name: Development tools for the Android SDK
 Source: https://android.googlesource.com/platform/sdk
 
 Files: *

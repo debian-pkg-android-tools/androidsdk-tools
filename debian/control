@@ -9,8 +9,8 @@ Build-Depends-Indep: default-jdk, bnd, libswt-gtk-3-java, libjfreechart-swt-java
  eclipse-rcp (>= 3.8.1), libguava-java (>= 13.0.1), libkxml2-java, perl
 Standards-Version: 3.9.4
 Homepage: http://developer.android.com/tools/help/index.html
-Vcs-Git: git://anonscm.debian.org/git/pkg-java/androidsdk-tools.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-java/androidsdk-tools.git
+Vcs-Git: git://anonscm.debian.org/pkg-java/androidsdk-tools.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-java/androidsdk-tools.git;a=summary
 
 Package: libandroidsdk-common-java
 Section: java
@@ -24,11 +24,11 @@ Section: java
 Architecture: all
 Depends: libandroidsdk-common-java (= ${binary:Version}),
  ${java:Depends}, ${misc:Depends}
-Description: Android sdklib
- The android sdklib contains the resource assembler that compiles
- the static resource files of an android project.
+Description: Android SDKlib
+ The Android SDKlib contains the resource assembler that compiles
+ the static resource files of an Android project.
  .
- This version of the sdklib library lacks the support for the sdk manager.
+ This version of the SDKlib library lacks the support for the SDK manager.
 
 Package: libandroidsdk-sdkstats-java
 Section: java
@@ -36,10 +36,11 @@ Architecture: all
 Depends: libandroidsdk-common-java (= ${binary:Version}),
  ${java:Depends}, ${misc:Depends}
 Description: Sends Android SDK usage statistics to Google
- This library sends reports about usage of Android SDK to Google server.
- Information can be used to help improving the software.
+ This library sends reports about usage of the Android SDK to the
+ Google servers. Information can be used to help improving the
+ software.
  .
- User has to grant a permission in order to participate in the data collection.
+ User has to grant permission in order to participate in the data collection.
 
 Package: libandroidsdk-swtmenubar-java
 Section: java
@@ -50,7 +51,7 @@ Description: Android SDK OS menubar hook library
  OS menu bar.
  .
  Typically, an SWT Menu named "Tools" should be provided into which the
- library will add About and Options menu items.
+ library will add "About" and "Options" menu items.
 
 Package: libandroidsdk-ddmlib-java
 Section: java
@@ -83,14 +84,14 @@ Description: Graphical debugging tool for Android
  Dalvik Debug Monitor is a tool for debugging Android applications. Among
  others, it provides these capabilities:
  .
-  * Port-forwarding services.
-  * Screen capture on the device.
-  * Thread and heap information on the device.
-  * Logcat, process, and radio state information.
-  * Incoming call and SMS spoofing.
-  * Location data spoofing.
+  * Port-forwarding services
+  * Screen capture on the device
+  * Thread and heap information on the device
+  * Logcat, process, and radio state information
+  * Incoming call and SMS spoofing
+  * Location data spoofing
  .
- This package is required only when you want to run DDMS as a standalone
+ This package is required only when you want to run DDMS as a stand-alone
  application. For usage from within Eclipse IDE, install eclipse-adt.
 
 Package: libandroidsdk-hierarchyviewerlib-java
@@ -100,7 +101,7 @@ Depends: libandroidsdk-ddmuilib-java (= ${binary:Version}),
  ${java:Depends}, ${misc:Depends}
 Description: Android Hierarchy Viewer library
  Hierarchy Viewer allows you to debug and optimize your user interface.
- It provides a visual representation of the layout's View hierarchy
+ It provides a visual representation of the layout's view hierarchy
  (the Layout View) and a magnified inspector of the display (the Pixel
  Perfect View).
 
@@ -117,8 +118,8 @@ Description: Tool to debug and optimize Android user interface
  (the Layout View) and a magnified inspector of the display (the Pixel
  Perfect View).
  .
- This package is required only when you want to run DDMS as a standalone
- application. For usage from within Eclipse IDE, install eclipse-adt
+ This package is required only when you want to run DDMS as a stand-alone
+ application. For usage from within Eclipse IDE, install eclipse-adt.
 
 Package: androidsdk-traceview
 Section: java
@@ -140,4 +141,3 @@ Description: Tool to scan and analyze the UI components of an Android applicatio
  that are displayed on the test device. Using this information, you can later
  create uiautomator tests with selector objects that target specific UI
  components to test.
-
