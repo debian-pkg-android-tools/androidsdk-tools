@@ -7,7 +7,7 @@ Uploaders: Stefan Handschuh <handschuh.stefan@googlemail.com>,
 Build-Depends: debhelper (>=9), cdbs, javahelper
 Build-Depends-Indep: default-jdk, bnd, libswt-gtk-3-java, libjfreechart-swt-java,
  eclipse-rcp (>= 3.8.1), libguava-java (>= 13.0.1), libkxml2-java, perl
-Standards-Version: 3.9.4
+Standards-Version: 3.9.6
 Homepage: http://developer.android.com/tools/help/index.html
 Vcs-Git: git://anonscm.debian.org/android-tools/androidsdk-tools.git
 Vcs-Browser: http://anonscm.debian.org/cgit/android-tools/androidsdk-tools.git

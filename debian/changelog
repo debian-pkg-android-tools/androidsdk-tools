@@ -2,6 +2,7 @@ androidsdk-tools (22.2+git20130830~92d25d6-2) UNRELEASED; urgency=medium
 
   * Package is now maintained by Android Tools team.
   * Updated Vcs-* fields to point to the new repository location.
+  * Bumped Standards-Version to 3.9.6.
 
  -- Jakub Adam <jakub.adam@ktknet.cz>  Fri, 10 Oct 2014 17:50:09 +0200
 
